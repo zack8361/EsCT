@@ -11,5 +11,8 @@ public class ex02 {
         for (String s : map.keySet()) {
             System.out.println(s);
         }
+        
+        int[] arr =new int[3];
+
     }
 }
