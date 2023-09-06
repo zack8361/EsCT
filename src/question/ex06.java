@@ -19,6 +19,7 @@ public class ex06 {
         else {
             response = "오답입니다!";
         }
+        System.out.println();
 
 //        위에 분기를 태워서 response 라는 문자열에 할당되었겠찌 어떤것이 ? 그거 출력해ㅓㅅ 확인
         System.out.println(response);
