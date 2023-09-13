@@ -14,6 +14,7 @@ public class 두정수사이의합 {
             num = a;
             a = b;
             b = num;
+            b -=num;
         }
         else {
             num = a;
