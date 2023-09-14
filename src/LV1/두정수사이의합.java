@@ -9,19 +9,17 @@ public class 두정수사이의합 {
 
     private static long solution(int a, int b) {
 
-        int num = 0;
-        if(a<b){
-            num = a;
-            a = b;
-            b = num;
-        }
-        else {
-            num = a;
-        }
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+
+        min = Math.min(a,b);
+        max = Math.max(a,b);
+
         long sum = 0;
-        for(int i=num; i<=b; i++){
-            sum+=i;
+        for (int i = min; i <= max; i++) {
+            sum += i;
         }
+
         return sum;
     }
 }
