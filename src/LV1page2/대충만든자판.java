@@ -1,17 +1,18 @@
 package LV1page2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
 public class 대충만든자판 {
     public static void main(String[] args) {
-        String[] keymap = {"ABACD", "BCEFD"};
-        String[] targets = {"ABCD","AABB"};
+        String[] keymap = {"ABCDE"};
+        String[] targets = {"FGHIJ"};
         System.out.println(solution(keymap,targets));
     }
 
     private static int[] solution(String[] keymap, String[] targets) {
-        int[] answer = new int[2];
+        ArrayList<Integer> list = new ArrayList<>();
 //        첫번째 map;
         HashMap<String,Integer> map = new HashMap<>();
         for (int i = 0; i < keymap.length; i++) {
@@ -26,6 +27,7 @@ public class 대충만든자판 {
                 }
             }
         }
+        System.out.println("map = " + map);
 
         int realAns = 0;
 
@@ -35,8 +37,23 @@ public class 대충만든자판 {
                 if(map.containsKey(String.valueOf(targets[i].charAt(j)))){
                     ans += map.get(String.valueOf(targets[i].charAt(j)));
                 }
+                else {
+                    ans = 0;
+                    break;
+                }
             }
-            answer[i] = ans;
+            if(ans == 0){
+                list.add(-1);
+            }
+            else {
+                list.add(ans);
+            }
+        }
+
+        System.out.println("list = " + list);
+        int[] answer = new int[list.size()];
+        for (int i = 0; i < answer.length; i++) {
+            answer[i] = list.get(i);
         }
 
         return answer;
