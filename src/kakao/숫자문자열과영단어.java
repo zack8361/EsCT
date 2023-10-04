@@ -10,7 +10,7 @@ public class 숫자문자열과영단어 {
     }
 
     private static int solution(String s) {
-        int answer = 0;
+        String answer = "";
         int[] numArr = {0,1,2,3,4,5,6,7,8,9};
         String[] numString = {"zero","one","two","three","four","five","six","seven","eight","nine"};
 
@@ -32,15 +32,16 @@ public class 숫자문자열과영단어 {
             else {
                 ans += s.charAt(i);
             }
+            if(strMap.containsKey(ans)){
+                list.add(strMap.get(ans));
+                ans = "";
+            }
         }
-        if(strMap.containsKey(ans)){
-            list.add(strMap.get(ans));
-            ans = "";
+        for (Integer integer : list) {
+            answer +=String.valueOf(integer);
         }
-        System.out.println("list = " + list);
-        return answer;
+        return Integer.parseInt(answer);
     }
-
     private static boolean isNumber(String s) {
         try{
             Integer.parseInt(s);
