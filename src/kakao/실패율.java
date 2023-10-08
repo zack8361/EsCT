@@ -1,5 +1,7 @@
 package kakao;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class 실패율
@@ -11,12 +13,29 @@ public class 실패율
     }
 
     private static int[] solution(int N, int[] stages) {
-        int[] answer=  {};
-        HashMap<Integer,Integer> scoreMap = new HashMap<>();
-//
-//        for (int i = 0; i < stages.length; i++) {
-//            for(int i = )
-//        }
+        int[] answer = {};
+
+        Arrays.sort(stages);
+        int ans = 0;
+
+        HashMap<Double,Integer> score = new HashMap<>();
+        int totalScore = stages.length;
+        for (int i = 1; i <= N; i++) {
+            int failScore = 0;
+            int cnt = 0;
+            for (int j = ans; j < stages.length; j++) {
+                if(stages[j]<=i){
+                    cnt ++;
+                    ans = j+1;
+                }
+            }
+
+            System.out.println("cnt = " + cnt);
+            score.put((double) (cnt/totalScore),i);
+            totalScore -=cnt;
+        }
+
+
         return answer;
     }
 }
