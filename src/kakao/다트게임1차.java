@@ -27,7 +27,7 @@ public class 다트게임1차 {
         for (int i = 0; i < dartResult.length(); i++) {
             if(dartResult.charAt(i) == '1' && dartResult.charAt(i+1) == '0'){
                 score[idx] = 10;
-
+                i++; // Skip '0
             }
             else if(dartResult.charAt(i) >= '0' && dartResult.charAt(i) <= '9'){
                 score[idx] = Integer.parseInt(String.valueOf(dartResult.charAt(i)));
@@ -35,36 +35,48 @@ public class 다트게임1차 {
 
             if(dartResult.charAt(i) == 'D'){
                 score[idx] = (int) Math.pow(score[idx],2);
-
+                try {
                     if (dartResult.charAt(i + 1) == '*') {
-                        score[idx-1] = score[idx-1] * 2;
-                        score[idx] *=2;
+                        score[idx - 1] = score[idx - 1] * 2;
+                        score[idx] *= 2;
                     } else if (dartResult.charAt(i + 1) == '#') {
-                        score[idx] *=-1;
+                        score[idx] *= -1;
                     }
+                }
+                catch (Exception e){
+
+                }
                     idx++;
 
             }
             else if(dartResult.charAt(i) =='T'){
                 score[idx] = (int) Math.pow(score[idx],3);
-
+                try {
                     if (dartResult.charAt(i + 1) == '*') {
-                        score[idx-1] = score[idx-1] * 2;
-                        score[idx] *=2;
+                        score[idx - 1] = score[idx - 1] * 2;
+                        score[idx] *= 2;
                     } else if (dartResult.charAt(i + 1) == '#') {
-                        score[idx] *=-1;
+                        score[idx] *= -1;
                     }
+                }
+                catch (Exception e){
+
+                }
                     idx++;
 
             }
             else if(dartResult.charAt(i) =='S'){
-
+                try {
                     if (dartResult.charAt(i + 1) == '*') {
-                        score[idx-1] = score[idx-1] * 2;
-                        score[idx] *=2;
+                        score[idx - 1] = score[idx - 1] * 2;
+                        score[idx] *= 2;
                     } else if (dartResult.charAt(i + 1) == '#') {
-                        score[idx] *=-1;
+                        score[idx] *= -1;
                     }
+                }
+                catch (Exception e){
+
+                }
                     idx++;
 
             }
