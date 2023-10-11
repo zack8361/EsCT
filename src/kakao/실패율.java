@@ -1,6 +1,8 @@
 package kakao;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 
 public class 실패율
 {
@@ -10,41 +12,30 @@ public class 실패율
         System.out.println(solution(N,stages));
     }
 
-    private static int[] solution(int n, int[] stages) {
+    private static int[] solution(int N, int[] stages) {
+        int[] answer = {};
 
-        ArrayList<Double> list = new ArrayList<>();
-        HashMap<Double,Integer> scoreMap = new HashMap<>();
-        double ans = 0;
-        double total = stages.length;
         Arrays.sort(stages);
-        for (double i = 1; i <= n; i++) {
-            double cnt = 0;
-            for (double j = ans; j <stages.length ; j++) {
-                if(i >= stages[(int) j]){
-                    cnt++;
+        int ans = 0;
+
+        HashMap<Double,Integer> score = new HashMap<>();
+        int totalScore = stages.length;
+        for (int i = 1; i <= N; i++) {
+            int failScore = 0;
+            int cnt = 0;
+            for (int j = ans; j < stages.length; j++) {
+                if(stages[j]<=i){
+                    cnt ++;
                     ans = j+1;
                 }
             }
-            scoreMap.put(cnt/total, (int) i);
-            list.add(cnt/total);
-            total-=cnt;
+
+            System.out.println("cnt = " + cnt);
+            score.put((double) (cnt/totalScore),i);
+            totalScore -=cnt;
         }
 
-        Collections.sort(list,Collections.reverseOrder());
 
-        System.out.println("list = " + list);
-        System.out.println("scoreMap = " + scoreMap);
-        int[] answer = new int[n];
-        int a = 0;
-        for (Double v : list) {
-            if(scoreMap.containsKey(v)){
-                answer[a++] = scoreMap.get(v);
-            }
-        }
-        System.out.println("Arrays.toString(answer) = " + Arrays.toString(answer));
-
-
-
-        return new int[0];
+        return answer;
     }
 }
