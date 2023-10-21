@@ -4,8 +4,8 @@ import java.util.ArrayDeque;
 
 public class 두큐합같게만들기 {
     public static void main(String[] args) {
-        int[] queue1 = {3,2,7,2};
-        int[] queue2 = {4,6,5,1};
+        int[] queue1 = {1,1};
+        int[] queue2 = {1,5};
         System.out.println(solution(queue1,queue2));
     }
 
@@ -14,47 +14,44 @@ public class 두큐합같게만들기 {
 
         ArrayDeque<Integer> deque1 = new ArrayDeque<>();
         ArrayDeque<Integer> deque2 = new ArrayDeque<>();
-
-        int sum1 = 0;
-        int sum2 = 0;
-
-        for (int i : queue1) {
-            sum1+=i;
-            deque1.addLast(i);
-        }
-        for (int i : queue2) {
-            sum2+=i;
-            deque2.addLast(i);
+        for (int i = 0; i < queue1.length; i++) {
+            deque1.addLast(queue1[i]);
+            deque2.addLast(queue2[i]);
         }
 
+        long sum1 = 0;
+        long sum2 = 0;
 
-        while (true) {
-            if(sum1 == sum2){
-                break;
-            }
-            if(answer > queue1.length+queue2.length){
-                return -1;
-            }
-            if(sum1> sum2){
+        for(int j : deque1){
+            sum1 +=j;
+        }
+        for(int j : deque2){
+            sum2 +=j;
+        }
+        int limit = Math.max(queue1.length,queue2.length);
+
+        for (int i = 0; i < limit; i++) {
+            if(sum1>sum2){
                 answer++;
-                deque2.addLast(deque1.pollFirst());
+                int num = deque1.pollFirst();
+                sum1-=num;
+                sum2+=num;
+                deque2.addLast(num);
+            }
+            else if(sum1<sum2){
+                answer++;
+                int num = deque2.pollFirst();
+                sum2-=num;
+                sum1+=num;
+                deque1.addLast(num);
             }
             else {
-                System.out.println("hi1");
-                answer++;
-                deque1.addLast(deque2.pollFirst());
+                break;
             }
-            sum1 =0;
-            sum2 = 0;
-            for (int integer : deque1) {
-                sum1+=integer;
-            }
-            for (int i : deque2) {
-                sum2+=i;
-            }
-
         }
-
+        if(answer == queue1.length + queue2.length){
+            return -1;
+        }
         return answer;
     }
 }
