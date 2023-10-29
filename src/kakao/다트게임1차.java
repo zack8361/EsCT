@@ -43,6 +43,7 @@ public class 다트게임1차 {
                         score[idx] *= -1;
                     }
                 }
+                
                 catch (Exception e){
 
                 }
