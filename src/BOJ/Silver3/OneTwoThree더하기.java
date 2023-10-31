@@ -1,4 +1,4 @@
-package BOJ.Silver5;
+package BOJ.Silver3;
 
 import java.util.Scanner;
 
