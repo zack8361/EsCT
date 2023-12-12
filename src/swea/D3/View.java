@@ -16,23 +16,17 @@ public class View {
             building[i] = sc.nextInt();
         }
 
-        for (int i = 0; i < N; i++) {
+        for (int i = 2; i < N+2; i++) {
             if(isViewRight(i)){
                 sum += building[i];
             }
-
         }
+        System.out.println(sum);
     }
 
     private static boolean isViewRight(int i) {
-        try {
-            if (building[i - 1] < building[i] && building[i - 2] < building[i] && building[i + 1] < building[i] && building[i + 2] < building[i]) {
-                return true;
-            }
-
-        }
-        catch (Exception e){
-            return  false;
+        if (building[i - 1] < building[i] && building[i - 2] < building[i] && building[i + 1] < building[i] && building[i + 2] < building[i]) {
+            return true;
         }
         return false;
     }
