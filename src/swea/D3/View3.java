@@ -8,7 +8,9 @@ public class View3 {
         Scanner sc = new Scanner(System.in);
         String str = sc.next();
         char[] charArr = str.toCharArray();
-
+        for (char c : charArr) {
+            System.out.println(c);
+        }
         int num = Integer.parseInt(new String(charArr));
         System.out.println("num = " + num);
     }
