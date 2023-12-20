@@ -21,13 +21,12 @@ public class S2817 {
                 arr[i] = sc.nextInt();
             }
             dfs(arr,0,totalNum,0);
-            System.out.println("cnt = " + cnt);
+            System.out.println("#"+ tc + " " + cnt);
             cnt = 0;
         }
     }
 
     private static void dfs(int[] arr, int now, int totalNum, int sum) {
-        System.out.println("sum = " + sum);
         if(sum>= totalNum){
             if(sum == totalNum){
                 cnt++;
