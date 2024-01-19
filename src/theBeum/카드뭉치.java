@@ -30,18 +30,15 @@ public class 카드뭉치 {
             if(cardMap1.containsKey(goal[i])){
                 if(isCorrectWord(cardMap1, cardMap1.get(goal[i]))){
                     cardMap1.remove(goal[i]);
-                    continue;
                 }
                 else {
                     answer = "No";
                     return answer;
                 }
-                
             }
             if(cardMap2.containsKey(goal[i])){
                 if(isCorrectWord(cardMap2, cardMap2.get(goal[i]))){
                     cardMap2.remove(goal[i]);
-                    continue;
                 }
                 else {
                     answer = "No";
