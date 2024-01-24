@@ -38,7 +38,7 @@ public class 실패율 {
             answer[i-1] = v;
             map.put(v,i);
         }
-        
+
         return new int[0];
     }
 
