@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 public class 뱀 {
     private static int time;
-    private static int[] dx = {1,0,-1,0};
-    private static int[] dy = {0,-1,0,1};
+    private static int[] dx = {0,1,0,-1};
+    private static int[] dy = {1,0,-1,0};
 
     private static class Node{
         private int x;
@@ -44,29 +44,8 @@ public class 뱀 {
 
         boolean flag = false;
         for (int i = 0; i < move; i++) {
-            int nowDir = 0;
             int X = scanner.nextInt();
             String direction = scanner.next();
-            while (!deque.isEmpty()){
-                Node now = deque.pollFirst();
-                for (int j = 0; j < X; j++) {
-                    time++;
-                    int nx = now.x + dx[nowDir];
-                    int ny = now.y + dy[nowDir];
-                    if(nx<0 || ny<0 || nx>=map.length || ny>= map.length || map[nx][ny] == 2){
-                        flag = true;
-                        break;
-                    }
-                    map[nx][ny] = 2;
-                }
-                
-                if(flag){
-                    break;
-                }
-            }
-            if(flag == true){
-                break;
-            }
         }
     }
 }
