@@ -1,6 +1,7 @@
 package newSWEA;
 
 
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Scanner;
 public class SweaLv32814 {
     private static boolean[] visited;
     private static int[][] network;
-    private static int max = 1;
+    private static int cnt;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -19,33 +20,32 @@ public class SweaLv32814 {
             int M = sc.nextInt();
             network = new int[N][N];
             visited = new boolean[N];
-
+            cnt = Integer.MIN_VALUE;
             for (int i = 0; i < M; i++) {
                 int a = sc.nextInt();
                 int b = sc.nextInt();
                 network[a-1][b-1] = 1;
                 network[b-1][a-1] = 1;
             }
-
-            for (int i = 0; i < network.length; i++) {
-                int dfs = dfs(i, 1);
-                System.out.println("dfs = " + dfs);
+            for(int i = 0; i< network.length; i++) {
+                dfs(i,1);
                 visited[i] = false;
             }
-            System.out.println("max = " + max);
-
+            System.out.println("#" + tc + " " + cnt);
         }
     }
 
-    private static int dfs(int now,int cnt) {
+    private static void dfs(int now,int count) {
         visited[now] = true;
-
-        for (int i = 0; i<network.length; i++){
-            if(!visited[i] && network[now][i] == 1) {
-                dfs(i,cnt+1);
+        for (int i = 0; i < network.length; i++) {
+            if(!visited[i] && network[now][i] == 1){
+                dfs(i,count+1);
+                visited[i] = false;
             }
         }
 
-        return cnt;
+        cnt = Math.max(cnt,count);
+
+
     }
 }
