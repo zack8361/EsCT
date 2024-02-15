@@ -6,61 +6,69 @@ import java.util.*;
  * 성재형 추천 문제 1
  */
 public class 요리사 {
-    private static int[] output;
+    private static int[][] output;
     private static boolean[] visited;
+
+    private static int N;
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
 
 
         for (int tc = 1; tc<= t; t++) {
-            int N = sc.nextInt();
+            N = sc.nextInt();
             int[][] arr = new int[N][N];
+            visited = new boolean[N];
             for (int i = 0; i < arr.length; i++) {
                 for (int j = 0; j < arr.length; j++) {
                     arr[i][j] = sc.nextInt();
                 }
             }
 
-            int max = Integer.MIN_VALUE;
-
-            ArrayList<Integer> list = new ArrayList<>();
+            output = arr;
             for (int i = 0; i < arr.length; i++) {
                 for (int j = 0; j < arr.length; j++) {
-                    if (i != j) {
-                        int abs = arr[i][j] + arr[j][i];
-                        if(!list.contains(abs)) {
-                            list.add(abs);
-                        }
-                    }
+                    System.out.print(arr[i][j] + " ");
                 }
                 System.out.println();
             }
 
-            output = new int[list.size()];
-            for (int i = 0; i < list.size(); i++) {
-                output[i] = list.get(i);
-            }
-            visited = new boolean[output.length];
+            dfs(0,0);
 
-            int a = N/2;
-            System.out.println(Arrays.toString(output));
-            dfs(a,0,0,0);
         }
     }
 
-    private static void dfs(int total, int sum,int depth,int now) {
-        if(depth == total){
-            System.out.println(sum);
+    private static void dfs(int now, int cnt) {
+        if(cnt == N/2) {
+            int calculate = calculate();
+            System.out.println(calculate);
             return;
         }
-        for (int i = now; i < output.length; i++) {
-            if(!visited[i]) {
-                visited[i] = true;
-                dfs(total, sum + output[i], depth + 1, i + 1);
-                visited[i] = false;
+
+        for (int i = 0; i < N; i++) {
+            visited[i] = true;
+            dfs(i+1,cnt +1);
+            visited[i] = false;
+        }
+    }
+
+    private static int calculate() {
+        int first = 0;
+        int second = 0;
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < N; j++) {
+                if(i == j) {
+                    continue;
+                }
+                if(visited[i] && visited[j]) {
+                    first += output[i][j];
+                }
+                else if(!visited[i] && !visited[j]){
+                    second += output[i][j];
+                }
             }
         }
-
+        return Math.abs(first - second);
     }
 }
