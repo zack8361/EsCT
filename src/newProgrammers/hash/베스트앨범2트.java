@@ -47,10 +47,7 @@ public class 베스트앨범2트 {
 
         String[] scoreGenre = new String[scoreList.size()];
         for(int i = 0; i<scoreList.size(); i++){
-            
         }
-
-
 
         return new int[0];
 
