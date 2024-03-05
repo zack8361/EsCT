@@ -72,3 +72,10 @@ public class 요리사 {
         return Math.abs(first - second);
     }
 }
+
+//10
+//4
+//0 5 3 8
+//4 0 4 1
+//2 5 0 3
+//7 2 3 0
